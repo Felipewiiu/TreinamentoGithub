@@ -1,0 +1,5 @@
+Git clone => clona um repositório
+
+git log --oneline
+
+-- Para restauração use: git restore --source 09c2fee
