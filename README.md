@@ -21,6 +21,6 @@ node app.js
 
 ### Para criar uma cópia da branch remota
 
-> Basta Colocar um nome da branch local, apontar a origem com o link do repositório que deseja copiar
+> Basta Colocar um nome da branch local e apontar a origem com o link do repositório que deseja copiar
 
 `git checkout -b <nome-do-seu-branch-local> origin/<nome-do-branch-remoto>`
