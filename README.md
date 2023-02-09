@@ -18,3 +18,9 @@ node app.js
 > `git branch` --> Lista as branchs
 
 > `git switch` --> Faz a troca de branchs
+
+### Para criar uma cópia da branch remota
+
+> Basta Colocar um nome da branch local, apontar a origem com o link do repositório que deseja copiar
+
+`git checkout -b <nome-do-seu-branch-local> origin/<nome-do-branch-remoto>`
