@@ -28,3 +28,7 @@ node app.js
 # Para fazer o link entre a branch local e remota
 
 `git remote add origin https://github.com/Felipewiiu/ApiContext.git`
+
+# Para definir para qual branch se deve fazer o upload
+
+`git push -u origin master`
