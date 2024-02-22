@@ -43,6 +43,35 @@ Mas o que isso significa as letras M e U do vscode?
 
 + U: A letra U representa o estado Untracked, do português não rastreado. Isso significa que o arquivo ainda não existia no repositório e que ainda não teve seu registro (commit) feito no Git.
 
+## Desfazendo um commit
+
+Para que possamos desfazer alterações em nosso código basta usar o comando: 
+
+````
+git revert mais [id] do commit
+
+````
+esse comando funciona como um control + z em todas as alterações do arquivo e nos traz um novo commit.
+
+## Apagando um commit
+
+Para que possamos apagar um commit usamos o seguinte código:
+
+````javascript
+git reset --hard a3322db2eb6f82162977169f5461fc93b81bfac1
+
+````
+
+**OBS:** _PAra que esse comando funcione precisamos passar o ID do commit anterios._
+
+
+
+
+
+
+
+
+
 
 
 
