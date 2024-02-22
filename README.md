@@ -1,3 +1,7 @@
+## Link para documentações
+
++ [Convertional commit: ](https://www.conventionalcommits.org/pt-br/v1.0.0-beta.4/)
+
 <h1> Sistema de cadastro de jogos</h1>
 
 > Status: em desemvolvimento
@@ -63,6 +67,27 @@ git reset --hard a3322db2eb6f82162977169f5461fc93b81bfac1
 ````
 
 **OBS:** _PAra que esse comando funcione precisamos passar o ID do commit anterios._
+
+## Comando para se alterar o nome de um commit
+
+Para que possamos mudar o nome de um commit ou adicionarmos um novo arquivo usamos o seguinte código:
+
+````
+git commit --amend -m [novaMensagemColoqueAqui]
+
+````
+É importante destacar que os comandos do Git que permitem modificar o histórico de commits devem ser utilizados com prudência e apenas quando o commit em questão ainda não foi enviado ao repositório remoto, ou seja, quando ele existe apenas no seu repositório local.
+
+Modificar um commit que já se tornou público, ou seja, aquele que já foi enviado ao GitHub ou a qualquer outro repositório remoto, pode acarretar problemas consideráveis na colaboração com as outras pessoas e na integridade do histórico de um projeto.
+
+Em situações de colaboração em equipe, é essencial manter a integridade do histórico de commits, pois qualquer modificação em um commit que outras pessoas estejam trabalhando pode resultar em conflitos e dificuldades na colaboração.
+
+É recomendável evitar a modificação excessiva do histórico de commits, uma vez que isso pode tornar o histórico confuso. O histórico deve ser uma representação precisa do progresso do projeto ao longo do tempo.
+
+
+
+
+
 
 
 
