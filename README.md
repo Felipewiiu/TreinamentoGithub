@@ -85,6 +85,28 @@ Em situações de colaboração em equipe, é essencial manter a integridade do 
 É recomendável evitar a modificação excessiva do histórico de commits, uma vez que isso pode tornar o histórico confuso. O histórico deve ser uma representação precisa do progresso do projeto ao longo do tempo.
 
 
+## Git reflog
+
+
+O git reflog é uma ferramenta muito útil no Git que mantém um registro de referências de cabeças (heads), o que inclui mudanças nos ponteiros de branches e commits mesmo que não estejam mais visíveis no histórico normal de commits. Ele é útil em situações em que você acidentalmente removeu um branch ou redefiniu o HEAD para um commit anterior e precisa recuperar o estado anterior.
+
+````
+Comando: git reflog
+
+````
+
+## Alixeira do git
+
+Imagine o cenário em que você apaga um commit tanto no local, quanto no remoto. A maneira de se recuperar esse commit é indo na "lixeira" do git. Lá fica as informações que um dia existiram na linha do tempo do git e é possível recupera-las com o comando:
+
+````
+Comando que mostra o commit: git show [hash_do_commit]
+
+Comando que recupera o commit: git cherry-pick
+
+````
+
+
 
 
 
