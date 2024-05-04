@@ -1,6 +1,6 @@
 <style>
     .red-text{
-        color: red
+        color: red;
     }
 </style>
 
