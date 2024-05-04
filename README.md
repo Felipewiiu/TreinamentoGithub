@@ -106,6 +106,29 @@ Comando que recupera o commit: git cherry-pick
 
 ````
 
+## Gitbisect
+
+O git bisect é uma ferramenta poderosa no Git usada para encontrar o commit que introduziu um determinado problema em um projeto. Essa ferramenta utiliza uma abordagem de busca binária para encontrar o commit culpado em um histórico de commits.
+Ele funciona basicamente com a analogia, dividir para conquistar, onde ele vai separando a parte boa das partes ruins até encontar o bug.
+
+Ele pode ser usado com os seguintes comandos:
+
+1. Primeiro precisamos pegar o primeiro commit: ` git log --oneline | tail -n 1`
+2. Usar o ``git bisect start``
+3. Marcar o commit ruim com `git bisect bad`
+4. Marcar o commit bom ` git bisect good f0ea950`
+5. Podemos visualizar o que ele está fazendo ` git bisect visualize --oneline`
+6. Terminar o processo `git bisect reset`
+
+**Dica de funcionamento**
+
+- *Se eu marcar um commit como `bad`, ele se tornará o primeiro da lista de commits*
+
+
+
+
+
+
 
 
 
