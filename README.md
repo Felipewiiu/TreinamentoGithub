@@ -1,8 +1,4 @@
-<style>
-    .red-text{
-        color: red;
-    }
-</style>
+
 
 ## Link para documentações
 
@@ -136,7 +132,7 @@ O rebase é uma operação no Git que permite mover ou combinar commits de uma r
 
 ![alt text](image-1.png)
 
-<span class="red-text">
+<span style="color: red;">
 *Importante: esse recurso é para ser realizado localmente e não no github*
 </span>
 
