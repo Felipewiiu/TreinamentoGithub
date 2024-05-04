@@ -1,3 +1,9 @@
+<style>
+    .red-text{
+        color: red
+    }
+</style>
+
 ## Link para documentações
 
 + [Convertional commit: ](https://www.conventionalcommits.org/pt-br/v1.0.0-beta.4/)
@@ -124,6 +130,15 @@ Ele pode ser usado com os seguintes comandos:
 
 - *Se eu marcar um commit como `bad`, ele se tornará o primeiro da lista de commits*
 
+## Git rebase
+
+O rebase é uma operação no Git que permite mover ou combinar commits de uma ramificação para outra. Ele reescreve o histórico de commits, aplicando as alterações de um ramo em cima de outro. O rebase é uma alternativa ao merge, que combina as alterações de diferentes ramificações criando um novo commit de merge.
+
+![alt text](image-1.png)
+
+<span class="red-text">
+*Importante: esse recurso é para ser realizado localmente e não no github*
+</span>
 
 
 
