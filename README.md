@@ -1,249 +1,200 @@
+# Guia de Referência Git e Desenvolvimento
 
+Bem-vindo ao guia definitivo para navegar pelos comandos do Git e dominar os fluxos de desenvolvimento. Seja você um iniciante ou um desenvolvedor experiente, este README será seu recurso principal para entender e utilizar os comandos do Git de forma eficaz.
 
-## Link para documentações
+## Sumário
 
-+ [Convertional commit: ](https://www.conventionalcommits.org/pt-br/v1.0.0-beta.4/)
+- [Link para Documentação de Commits Convencionais](https://www.conventionalcommits.org/pt-br/v1.0.0-beta.4/)
+- [Introdução](#introdução)
+- [Configurando e Executando o Projeto](#configurando-e-executando-o-projeto)
+- [Trabalhando com Branches](#trabalhando-com-branches)
+- [Entendendo os Indicadores de Status de Arquivos no VSCode](#entendendo-os-indicadores-de-status-de-arquivos-no-vscode)
+- [Desfazendo Alterações](#desfazendo-alterações)
+- [Alterando Mensagens de Commit](#alterando-mensagens-de-commit)
+- [Git Reflog: Sua Máquina do Tempo](#git-reflog-sua-máquina-do-tempo)
+- [Lixeira do Git: Recuperando Commits Deletados](#lixeira-do-git-recuperando-commits-deletados)
+- [Git Bisect: Encontrando Bugs como um Profissional](#git-bisect-encontrando-bugs-como-um-profissional)
+- [Git Rebase: Organizando Seus Commits](#git-rebase-organizando-seus-commits)
+- [Git Amend: Adicionando ao Seu Último Commit](#git-amend-adicionando-ao-seu-último-commit)
+- [Comandos Básicos do Vim](#comandos-básicos-do-vim)
 
-<h1> Sistema de cadastro de jogos</h1>
+## Introdução
 
-> Status: em desemvolvimento
-Para rodar esse projeto na sua máquina, por favor digite:
+Este repositório serve como um guia abrangente para os comandos do Git e as melhores práticas no desenvolvimento de software. Desde a configuração do seu projeto até técnicas avançadas como rebasing e bisecting, você encontrará tudo o que precisa para otimizar seu processo de desenvolvimento.
 
-```
+## Configurando e Executando o Projeto
+
+### Para executar o projeto localmente:
+
+Certifique-se de ter o Node.js instalado e execute o seguinte comando:
+
+```bash
 node app.js
 ```
 
-# Comandos na branch
+## Trabalhando com Branches
 
-> `git checkout` -->  Alternar ramificações ou restaurar arquivos da árvore de trabalho
+### Comandos Básicos de Branches:
 
-> `git checkout -b` --> Faz a criação de uma nova branch
+- `git checkout`: Alterna entre branches ou restaura arquivos da árvore de trabalho.
+- `git checkout -b <nome-da-branch>`: Cria uma nova branch.
+- `git branch -a`: Lista todas as branches (local e remoto).
+- `git branch`: Lista as branches locais.
+- `git switch <nome-da-branch>`: Alterna entre branches.
 
-> `git branch -a` --> lista todas as branchs tanto local quanto remoto
+### Criando uma Cópia Local de uma Branch Remota:
 
-> `git branch` --> Lista as branchs
+Para criar uma cópia local de uma branch remota, use o seguinte comando:
 
-> `git switch` --> Faz a troca de branchs
+```bash
+git checkout -b <seu-nome-da-branch-local> origin/<nome-da-branch-remota>
+```
 
-# Para criar uma cópia da branch remota
+### Ligando Branches Locais e Remotas:
 
-> Basta Colocar um nome da branch local e apontar a origem com o link do repositório que deseja copiar
+Para ligar sua branch local a um repositório remoto, use:
 
-`git checkout -b <nome-do-seu-branch-local> origin/<nome-do-branch-remoto>`
+```bash
+git remote add origin <link-do-repositório>
+```
 
-# Para fazer o link entre a branch local e remota
+### Enviando Alterações para uma Branch Específica:
 
-`git remote add origin https://github.com/Felipewiiu/ApiContext.git`
+Para enviar alterações para uma branch específica, use:
 
-# Para definir para qual branch se deve fazer o upload
+```bash
+git push -u origin <nome-da-branch>
+```
 
-`git push -u origin master`
+## Entendendo os Indicadores de Status de Arquivos no VSCode
 
-## Sinalizações em arquivos do VSCode
+Já se perguntou o que significam as letras 'M' e 'U' no VSCode? Aqui está um guia rápido:
 
-Mas o que isso significa as letras M e U do vscode?
+- **M**: Representa o status 'Modificado', indicando que o arquivo foi modificado mas ainda não foi preparado para o commit.
+- **U**: Indica o status 'Não Rastreado', significando que o arquivo é novo e ainda não foi adicionado ao repositório Git.
 
-![alt text](image.png)
+## Desfazendo Alterações
 
-+ M: A letra M representa o estado Modified, do português modificado. Isso significa que o arquivo já existia no repositório, mas que recebeu alguma modificação que ainda não foi registrada no Git.
+### Revertendo um Commit:
 
-+ U: A letra U representa o estado Untracked, do português não rastreado. Isso significa que o arquivo ainda não existia no repositório e que ainda não teve seu registro (commit) feito no Git.
+Para desfazer alterações introduzidas por um commit, use:
 
-## Desfazendo um commit
+```bash
+git revert <id-do-commit>
+```
 
-Para que possamos desfazer alterações em nosso código basta usar o comando: 
+Este comando cria um novo commit que desfaz as alterações.
 
-````
-git revert mais [id] do commit
+### Excluindo um Commit:
 
-````
-esse comando funciona como um control + z em todas as alterações do arquivo e nos traz um novo commit.
+Para remover um commit do histórico, use:
 
-## Apagando um commit
+```bash
+git reset --hard <id-do-commit>
+```
 
-Para que possamos apagar um commit usamos o seguinte código:
+**Observação:** Tenha cuidado ao usar este comando, pois ele exclui permanentemente o commit e suas alterações.
 
-````javascript
-git reset --hard a3322db2eb6f82162977169f5461fc93b81bfac1
+## Alterando Mensagens de Commit
 
-````
+Para alterar a mensagem de um commit ou adicionar novos arquivos a ele, use:
 
-**OBS:** _PAra que esse comando funcione precisamos passar o ID do commit anterios._
+```bash
+git commit --amend -m "<nova-mensagem>"
+```
 
-## Comando para se alterar o nome de um commit
+## Git Reflog: Sua Máquina do Tempo
 
-Para que possamos mudar o nome de um commit ou adicionarmos um novo arquivo usamos o seguinte código:
+O comando `git reflog` mantém um registro de alterações de referência, incluindo movimentos de branches e commits. É útil para recuperar commits ou branches perdidos:
 
-````
-git commit --amend -m [novaMensagemColoqueAqui]
+```bash
+git reflog
+```
 
-````
-É importante destacar que os comandos do Git que permitem modificar o histórico de commits devem ser utilizados com prudência e apenas quando o commit em questão ainda não foi enviado ao repositório remoto, ou seja, quando ele existe apenas no seu repositório local.
+## Lixeira do Git: Recuperando Commits Deletados
 
-Modificar um commit que já se tornou público, ou seja, aquele que já foi enviado ao GitHub ou a qualquer outro repositório remoto, pode acarretar problemas consideráveis na colaboração com as outras pessoas e na integridade do histórico de um projeto.
+Se você excluir acidentalmente um commit local e remoto, poderá recuperá-lo da lixeira do Git:
 
-Em situações de colaboração em equipe, é essencial manter a integridade do histórico de commits, pois qualquer modificação em um commit que outras pessoas estejam trabalhando pode resultar em conflitos e dificuldades na colaboração.
+```bash
+git show <hash-do-commit>
+git cherry-pick <hash-do-commit>
+```
 
-É recomendável evitar a modificação excessiva do histórico de commits, uma vez que isso pode tornar o histórico confuso. O histórico deve ser uma representação precisa do progresso do projeto ao longo do tempo.
+## Git Bisect: Encontrando Bugs como um Profissional
 
+O Git bisect é uma ferramenta poderosa para identificar o commit que introduziu um bug:
 
-## Git reflog
+1. Inicie o processo de bisect:
+   ```bash
+   git bisect start
+   ```
+2. Marque o commit ruim:
+   ```bash
+   git bisect bad
+   ```
+3. Marque o commit bom:
+   ```bash
+   git bisect good <commit-bom>
+   ```
+4. Continue bisectando até encontrar o culpado:
+   ```bash
+   git bisect visualize
+   ```
+5. Termine o processo de bisect:
+   ```bash
+   git bisect reset
+   ```
 
+## Git Rebase: Organizando Seus Commits
 
-O git reflog é uma ferramenta muito útil no Git que mantém um registro de referências de cabeças (heads), o que inclui mudanças nos ponteiros de branches e commits mesmo que não estejam mais visíveis no histórico normal de commits. Ele é útil em situações em que você acidentalmente removeu um branch ou redefiniu o HEAD para um commit anterior e precisa recuperar o estado anterior.
+O Git rebase permite mover ou combinar commits de uma branch para outra:
 
-````
-Comando: git reflog
+```bash
+git rebase -i <nome-da-branch>
+```
 
-````
+## Git Amend: Adicionando ao Seu Último Commit
 
-## Alixeira do git
+O comando `git commit --amend` permite adicionar mudanças ao commit anterior:
 
-Imagine o cenário em que você apaga um commit tanto no local, quanto no remoto. A maneira de se recuperar esse commit é indo na "lixeira" do git. Lá fica as informações que um dia existiram na linha do tempo do git e é possível recupera-las com o comando:
-
-````
-Comando que mostra o commit: git show [hash_do_commit]
-
-Comando que recupera o commit: git cherry-pick
-
-````
-
-## Gitbisect
-
-O git bisect é uma ferramenta poderosa no Git usada para encontrar o commit que introduziu um determinado problema em um projeto. Essa ferramenta utiliza uma abordagem de busca binária para encontrar o commit culpado em um histórico de commits.
-Ele funciona basicamente com a analogia, dividir para conquistar, onde ele vai separando a parte boa das partes ruins até encontar o bug.
-
-Ele pode ser usado com os seguintes comandos:
-
-1. Primeiro precisamos pegar o primeiro commit: ` git log --oneline | tail -n 1`
-2. Usar o ``git bisect start``
-3. Marcar o commit ruim com `git bisect bad`
-4. Marcar o commit bom ` git bisect good f0ea950`
-5. Podemos visualizar o que ele está fazendo ` git bisect visualize --oneline`
-6. Terminar o processo `git bisect reset`
-
-**Dica de funcionamento**
-
-- *Se eu marcar um commit como `bad`, ele se tornará o primeiro da lista de commits*
-
-## Git rebase
-
-O rebase é uma operação no Git que permite mover ou combinar commits de uma ramificação para outra. Ele reescreve o histórico de commits, aplicando as alterações de um ramo em cima de outro. O rebase é uma alternativa ao merge, que combina as alterações de diferentes ramificações criando um novo commit de merge.
-
-![alt text](image-1.png)
-
-*Importante: esse recurso é para ser realizado localmente e não no github*
-
-**Comando para realizar o rebase**
-
-````
-git rebase -i [branch definida]
-````
-
-**Git amend**
-
-git commit --amend é um comando do Git que permite adicionar mudanças ao último commit realizado. Em vez de criar um novo commit, ele combina as mudanças com o commit anterior, alterando assim o histórico de commits.
-
-Este comando é útil quando você esquece de incluir arquivos em um commit ou deseja modificar a mensagem do commit mais recente.
-
-````
+```bash
 git commit --amend
+```
 
-````
+## Comandos Básicos do Vim
 
-**Tela do git rebase**
+Aqui estão alguns comandos essenciais do Vim para usuários Linux:
 
- ````
- pick ff7a61c estou criando novos requisitos de projeto
-pick 86f3085 ~definindo o padrão de projeto
+- **Modo de Inserção:**
+  - `i`: Inserir texto antes do cursor.
+  - `a`: Inserir texto após o cursor.
+  - `o`: Inserir uma nova linha abaixo da linha atual.
+  - `O`: Inserir uma nova linha acima da linha atual.
 
-# Rebase e191cad..86f3085 onto e191cad (2 commands)
-#
-# Commands:
-# p, pick <commit> = use commit
-# r, reword <commit> = use commit, but edit the commit message
-# e, edit <commit> = use commit, but stop for amending
-# s, squash <commit> = use commit, but meld into previous commit
-# f, fixup [-C | -c] <commit> = like "squash" but keep only the previous
-#                    commit's log message, unless -C is used, in which case
-#                    keep only this commit's message; -c is same as -C but
-#                    opens the editor
-# x, exec <command> = run command (the rest of the line) using shell
-# b, break = stop here (continue rebase later with 'git rebase --continue')
-# d, drop <commit> = remove commit
-# l, label <label> = label current HEAD with a name
-# t, reset <label> = reset HEAD to a label
-# m, merge [-C <commit> | -c <commit>] <label> [# <oneline>]
-# .       create a merge commit using the original merge commit's
-# .       message (or the oneline, if no original merge commit was
-# .       specified); use -c <commit> to reword the commit message
-#
-# These lines can be re-ordered; they are executed from top to bottom.
-#
-# If you remove a line here THAT COMMIT WILL BE LOST.
-#
-# However, if you remove everything, the rebase will be aborted.
+- **Modo Normal:**
+  - `h`, `j`, `k`,
 
- ````
+ `l`: Mover o cursor (esquerda, baixo, cima, direita).
+  - `x`: Excluir o caractere sob o cursor.
+  - `dd`: Excluir a linha atual.
+  - `yy`: Copiar a linha atual.
+  - `p`: Colar o texto copiado ou excluído após o cursor.
+  - `u`: Desfazer a última operação.
+  - `Ctrl + r`: Refazer a última operação desfeita.
 
+- **Navegação:**
+  - `G`: Ir para a última linha do arquivo.
+  - `gg`: Ir para a primeira linha do arquivo.
+  - `:n`: Ir para a linha n (substitua "n" pelo número da linha desejada).
+  - `Ctrl + u`: Rolar para cima meia página.
+  - `Ctrl + d`: Rolar para baixo meia página.
 
-    M_M_______
-  /-          \
-E  0          /~~
- \           /
-  ¨¨W¨¨¨¨¨W¨  
+- **Salvar e Sair:**
+  - `:w`: Salvar o arquivo.
+  - `:q`: Sair do Vim.
+  - `:q!`: Sair do Vim sem salvar as alterações.
+  - `:wq` ou `:x`: Salvar e sair do Vim.
 
-## Comandos básicos do vim
+Esses comandos ajudarão você a navegar e editar arquivos de forma eficiente usando o Vim.
 
-Aqui estão alguns dos principais comandos do Vim no Linux:
-
-1. **Modo de Inserção:**
-   - `i`: Inserir texto antes do cursor.
-   - `a`: Inserir texto após o cursor.
-   - `o`: Inserir uma nova linha abaixo da linha atual e começar a inserir texto.
-   - `O`: Inserir uma nova linha acima da linha atual e começar a inserir texto.
-
-2. **Modo Normal:**
-   - `h`, `j`, `k`, `l`: Movimentar o cursor (esquerda, baixo, cima, direita).
-   - `x`: Excluir o caractere sob o cursor.
-   - `dd`: Excluir a linha atual.
-   - `yy`: Copiar a linha atual.
-   - `p`: Colar o texto copiado ou excluído após o cursor.
-   - `u`: Desfazer a última operação.
-   - `Ctrl + r`: Refazer a última operação desfeita.
-
-3. **Navegação:**
-   - `G`: Ir para a última linha do arquivo.
-   - `gg`: Ir para a primeira linha do arquivo.
-   - `:n`: Ir para a linha n (substitua "n" pelo número da linha desejada).
-   - `Ctrl + u`: Rolar para cima meia página.
-   - `Ctrl + d`: Rolar para baixo meia página.
-
-4. **Salvar e Sair:**
-   - `:w`: Salvar o arquivo.
-   - `:q`: Sair do Vim.
-   - `:q!`: Sair do Vim sem salvar as alterações.
-   - `:wq` ou `:x`: Salvar e sair do Vim.
-
-Estes são apenas alguns dos comandos básicos. O Vim é um editor muito poderoso com muitos recursos adicionais.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Agora, munido desse conhecimento, você está pronto para enfrentar qualquer desafio do Git que surgir em seu caminho! Boa codificação! 🚀🔥
