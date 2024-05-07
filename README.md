@@ -140,6 +140,17 @@ O rebase é uma operação no Git que permite mover ou combinar commits de uma r
 git rebase -i [branch definida]
 ````
 
+**Git amend**
+
+git commit --amend é um comando do Git que permite adicionar mudanças ao último commit realizado. Em vez de criar um novo commit, ele combina as mudanças com o commit anterior, alterando assim o histórico de commits.
+
+Este comando é útil quando você esquece de incluir arquivos em um commit ou deseja modificar a mensagem do commit mais recente.
+
+````
+git commit --amend
+
+````
+
 **Tela do git rebase**
 
  ````
@@ -174,6 +185,47 @@ pick 86f3085 ~definindo o padrão de projeto
 # However, if you remove everything, the rebase will be aborted.
 
  ````
+
+
+    M_M_______
+  /-          \
+E  0          /~~
+ \           /
+  ¨¨W¨¨¨¨¨W¨  
+
+## Comandos básicos do vim
+
+Aqui estão alguns dos principais comandos do Vim no Linux:
+
+1. **Modo de Inserção:**
+   - `i`: Inserir texto antes do cursor.
+   - `a`: Inserir texto após o cursor.
+   - `o`: Inserir uma nova linha abaixo da linha atual e começar a inserir texto.
+   - `O`: Inserir uma nova linha acima da linha atual e começar a inserir texto.
+
+2. **Modo Normal:**
+   - `h`, `j`, `k`, `l`: Movimentar o cursor (esquerda, baixo, cima, direita).
+   - `x`: Excluir o caractere sob o cursor.
+   - `dd`: Excluir a linha atual.
+   - `yy`: Copiar a linha atual.
+   - `p`: Colar o texto copiado ou excluído após o cursor.
+   - `u`: Desfazer a última operação.
+   - `Ctrl + r`: Refazer a última operação desfeita.
+
+3. **Navegação:**
+   - `G`: Ir para a última linha do arquivo.
+   - `gg`: Ir para a primeira linha do arquivo.
+   - `:n`: Ir para a linha n (substitua "n" pelo número da linha desejada).
+   - `Ctrl + u`: Rolar para cima meia página.
+   - `Ctrl + d`: Rolar para baixo meia página.
+
+4. **Salvar e Sair:**
+   - `:w`: Salvar o arquivo.
+   - `:q`: Sair do Vim.
+   - `:q!`: Sair do Vim sem salvar as alterações.
+   - `:wq` ou `:x`: Salvar e sair do Vim.
+
+Estes são apenas alguns dos comandos básicos. O Vim é um editor muito poderoso com muitos recursos adicionais.
 
 
 
